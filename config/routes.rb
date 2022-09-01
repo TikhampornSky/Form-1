@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #root 'main#test'
+  root 'tontan#TontanFunction'
   get 'main/test'
   get 'main/test2'
   get 'main/test' => 'main/test2'

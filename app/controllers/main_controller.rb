@@ -1,6 +1,6 @@
 class MainController < ApplicationController
   def test
-    #redirect_to '/main/test2'
+    @numberSubject = params[:numberSubject].to_i
   end
 
   def test2
@@ -10,6 +10,7 @@ class MainController < ApplicationController
     @s1 = params[:subject1]
     @s2 = params[:subject2]
     @s3 = params[:subject3]
+    @numberSubject = params[:numberSubject].to_i
     @summ = @num1 + @num2 + @num3
 
     @max_score = [@num1, @num2, @num3].max
@@ -25,4 +26,16 @@ class MainController < ApplicationController
     end
   end
 
+  def isOK
+    #redirect_to '/main/test2'
+    @num1 = params[:score1].to_i
+    @num2 = params[:score2].to_i
+    @num3 = params[:score3].to_i
+    @s1 = params[:subject1]
+    @s2 = params[:subject2]
+    @s3 = params[:subject3]
+    @err = Array.new(20)
+    
+
+  end
 end

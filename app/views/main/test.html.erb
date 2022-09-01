@@ -1,15 +1,12 @@
 <h1>Fill Form</h1>
-
-<%= form_with url: "/main/test2", method: :get do |form| %>
-    <%= form.label :subject1, "ชื่อวิชาที่1: " %> <%= form.text_field :subject1 %>
-    <%= form.label :score1, "คะแนนวิชาที่1: " %> <%= form.number_field :score1 %>
+<p> Number of Subject: <%= @numberSubject %></P>
+<%= form_with url: "/main/test2?numberSubject=#{@numberSubject}", method: :get do |form| %>
+    <% @numberSubject.times do |i| %>
+        <%= form.label :subject1, "ชื่อวิชา #{i+1}: " %> <%= form.text_field :"subject#{i+1}" %>
+        <%= form.label :score1, "คะแนนวิชา #{i+1}: " %> <%= form.number_field :"score#{i+1}" %>
+        <br>
+        <br>
+    <% end %>
     <br>
-    <%= form.label :subject2, "ชื่อวิชาที่2: " %> <%= form.text_field :subject2 %>
-    <%= form.label :score2, "คะแนนวิชาที่2: " %> <%= form.number_field :score2 %>
-    <br>
-    <%= form.label :subject3, "ชื่อวิชาที่3: " %> <%= form.text_field :subject3 %>
-    <%= form.label :score3, "คะแนนวิชาที่3: " %> <%= form.number_field :score3 %>
-    <br>
-    <br>
-    <%= form.submit "submit" %>
+    <%= form.submit "submit#{@numberSubject}" %>
 <% end %>
