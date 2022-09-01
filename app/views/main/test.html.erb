@@ -1,0 +1,15 @@
+<h1>Fill Form</h1>
+
+<%= form_with url: "/main/test2", method: :get do |form| %>
+    <%= form.label :subject1, "ชื่อวิชาที่1: " %> <%= form.text_field :subject1 %>
+    <%= form.label :score1, "คะแนนวิชาที่1: " %> <%= form.number_field :score1 %>
+    <br>
+    <%= form.label :subject2, "ชื่อวิชาที่2: " %> <%= form.text_field :subject2 %>
+    <%= form.label :score2, "คะแนนวิชาที่2: " %> <%= form.number_field :score2 %>
+    <br>
+    <%= form.label :subject3, "ชื่อวิชาที่3: " %> <%= form.text_field :subject3 %>
+    <%= form.label :score3, "คะแนนวิชาที่3: " %> <%= form.number_field :score3 %>
+    <br>
+    <br>
+    <%= form.submit "submit" %>
+<% end %>
