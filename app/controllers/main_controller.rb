@@ -1,41 +1,49 @@
 class MainController < ApplicationController
   def test
-    @numberSubject = params[:numberSubject].to_i
-  end
+    @isAgain = params[:isAgain]
+    if (@isAgain)
+      @numberSubject = params[:numberSubject].to_i
+      @subjectOld = []
+      @scoreOld = []
+      @isEmp = false
 
-  def test2
-    @num1 = params[:score1].to_i
-    @num2 = params[:score2].to_i
-    @num3 = params[:score3].to_i
-    @s1 = params[:subject1]
-    @s2 = params[:subject2]
-    @s3 = params[:subject3]
-    @numberSubject = params[:numberSubject].to_i
-    @summ = @num1 + @num2 + @num3
+      @sumScore = 0
+      @maxScore = params["score#{1}"].to_i
+      @maxSubject = params["subject#{1}"]
 
-    @max_score = [@num1, @num2, @num3].max
-    @max_subject = ''
-    if (@max_score === @num1)
-      @max_subject = @s1
-    elsif (@max_score === @num2)
-      @max_subject = @s2
-    elsif (@max_score === @num3)
-      @max_subject = @s3
-    else 
-      @max_subject = ''
+      for i in 1..@numberSubject do
+        @subject = params["subject#{i}"]
+        @score = params["score#{i}"].to_i
+
+        @sumScore += @score
+        if (@maxScore < @score)
+          @maxScore = @score
+          @maxSubject = @subject
+        end
+      
+        if (@subject == "")
+          @isEmp = true
+        else
+          @subjectOld = @subjectOld.append(@subject)
+        end
+        if (@score == "")
+          @isEmp = true
+          @scoreOld = @scoreOld.append(@score)
+        end
+      end
+
+      if (@isEmp)
+        
+      else
+        redirect_to "/main/test2?sumScore=#{@sumScore}&maxSubject=#{@maxSubject}"
+      end
+    else
+      @numberSubject = params[:numberSubject].to_i
     end
   end
 
-  def isOK
-    #redirect_to '/main/test2'
-    @num1 = params[:score1].to_i
-    @num2 = params[:score2].to_i
-    @num3 = params[:score3].to_i
-    @s1 = params[:subject1]
-    @s2 = params[:subject2]
-    @s3 = params[:subject3]
-    @err = Array.new(20)
-    
-
+  def test2
+    @sumScore = params[:sumScore].to_i
+    @maxSubject = params[:maxSubject]
   end
 end
