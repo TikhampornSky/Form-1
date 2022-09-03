@@ -21,12 +21,12 @@ class MainController < ApplicationController
           @maxSubject = @subject
         end
       
-        if (@subject == "")
+        if (@subject === "")
           @isEmp = true
         else
           @subjectOld = @subjectOld.append(@subject)
         end
-        if (@score == "")
+        if (params["score#{i}"] === "")
           @isEmp = true
           @scoreOld = @scoreOld.append(@score)
         end
